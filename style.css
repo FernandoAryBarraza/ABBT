@@ -1,0 +1,520 @@
+/* ********** Custom Properties ********** */
+:root {
+    --first-color: #d90062;
+    --first-alpha-color: rgba(217, 0, 98, 0.75);
+    --second-color: #14192d;
+    --second-alpha-color: rgba(20, 25, 45, 0.75);
+    --third-color: #501464;
+    --third-alpha-color: rgba(80, 20, 100, 0.75);
+    --white-color: #fff;
+    --gray-light-color: #f3f3f3;
+    --gray-color: #ccc;
+    --gray-dark-color: #666;
+    --black-color: #000;
+    --link-color: #509ee3;
+    --title-color: #333;
+    --text-color: #222;
+    --white-alpha-color: rgba(255, 255, 255, 0.5);
+    --black-alpha-color: rgba(0, 0, 0, 0.5);
+    --font: "Raleway", sans-serif;
+    --max-width: 1200px;
+    --header-height: 4rem;
+}
+/* ********** Reset ********** */
+html {
+    box-sizing: border-box;
+    font-family: var(--font);
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+  
+  *,
+  *::after,
+  *::before {
+    box-sizing: inherit;
+}
+  
+body {
+    margin: 0;
+    overflow-x: hidden;
+    color: var(--text-color);
+}
+  
+a {
+    color: var(--link-color);
+    transition: all 0.5s ease-out;
+}
+  
+a:hover {
+    opacity: 0.75;
+}
+  
+h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+  
+h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+  
+h3 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+  
+h4 {
+    margin: 0;
+    font-size: 1rem;
+}
+  
+h5 {
+    margin: 0;
+    font-size: 0.85rem;
+}
+  
+h6 {
+    margin: 0;
+    font-size: 0.7rem;
+}
+  
+img {
+    max-width: 100%;
+    height: auto;
+}
+  
+p {
+    line-height: 1.6;
+}
+  
+/****** Nieve de Estrellas ******/
+.snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999; /* Encima de todo */
+}
+
+.snowflake{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    opacity: 0.8;
+    animation: fall linear 1;
+    top: -5%;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateX(0) translateY(-10vh) rotate(0deg);
+    }
+
+    50% {
+        transform: translateX(20px) translateY(50vh) rotate(180deg);
+    }
+
+    100% {
+        transform: translateX(-20px) translateY(110vh) rotate(360deg);
+        opacity: 0.5;
+    }
+}
+
+
+/* ********** HeroImage ********** */
+
+.home{
+    display: grid;
+    grid-template-areas: "stack";
+    position: relative;
+    z-index: 0;   
+}
+
+.home > * {
+    grid-area: stack;
+    animation: parallax linear;
+    animation-timeline: scroll();
+}
+
+.hero-image {
+    background-image: url('assets/Templo.webp');
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    --parallax-speed: 15;
+    z-index: 1;
+}
+
+.opacity {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    --parallax-speed: 15;
+    z-index: 2;
+}
+
+.couple-names {
+    font-family: var(--font);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    z-index: 4;
+    --parallax-speed: 65;
+
+    & h2 {
+        font-size: 7.5vw;
+        padding: 20px;
+        color: var(--white-color);
+        text-align: center;
+    }
+}
+
+/* Estilo para la letra inicial */
+.name::first-letter {
+    font-family: cursive;
+    font-style: italic;
+    font-size: 1.5em;
+    color: #ff9a6b; 
+    font-weight: bold; 
+}
+  
+.ampersand {
+    position: relative;
+    padding: 0 20px;
+    font-style: italic;
+    font-size: 2.5em;
+    color: var(--white-color); /* Color del & */
+}
+  
+.ampersand::before,
+.ampersand::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 1rem;
+    height: 1px;
+    background-color: var(--white-color);
+}
+
+.ampersand::before {
+    left: 0;
+}
+
+.ampersand::after {
+    right: 0;
+}
+  
+  /* Para pantallas pequeñas (versión vertical) */
+@media (max-width: 768px) {
+    .home > * {
+        animation: none; /* Desactiva parallax en móviles */
+    }
+    .couple-names {
+      flex-direction: column;
+    }
+    
+    .ampersand {
+      padding: 20px 0;
+    }
+    
+    .ampersand::before,
+    .ampersand::after {
+      width: 1px;
+      height: 15px;
+      left: 50%;
+    }
+    
+    .ampersand::before {
+      top: 0;
+    }
+    
+    .ampersand::after {
+      top: auto;
+      bottom: 0;
+    }
+}
+
+
+@media screen and (max-width: 450px) {
+    .hero-image {
+        background-image: url('assets/Templo-sm.webp');           
+    }
+
+    .hero-image-title {
+        font-size: 10vw;
+        padding-top: 27vw;
+    }
+}
+
+
+@keyframes parallax {
+    to {
+      transform: 
+        translateY(calc(var(--parallax-speed) * 13px));
+    }
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--max-width);    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--first-color);
+    color: var(--white-color);
+    text-decoration: none;
+    border-radius: 7px;
+    transition: all 0.3s ease;
+}
+
+.hero {
+    background-image: 
+    url('assets/sandy-millar-8vaQKYnawHw-unsplash-Photoroom.png');
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;    
+    background-attachment: fixed;
+    margin-top: 11rem;
+        
+    & h1 {
+        font-size: 7.5vw;
+        margin-top: 7rem;
+        padding: 2rem;
+        text-align: center;        
+        color: var(--white-color);
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    }
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 2rem;
+}
+  
+.text-content{
+    color: var(--white-color);
+    font-size: 1.2rem;
+}
+
+.context{
+    border-radius: 150px/100px;
+    background-color: var(--white-alpha-color);
+    margin: 0 2rem;
+    padding: 2rem;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+
+@media screen and (min-width: 1024px) {
+    .hero {
+        background-size: 20%;
+    }
+    .hero-content {
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .text-content,
+    .novios {
+        flex: 1;
+    }
+
+    .novios {
+        height: auto;
+        border-radius: 12px;
+        width: 27rem;
+        height: auto;
+    }
+      
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('assets/paneles-arcos-para-boda-con-flores.webp');
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px);
+    z-index: -1;
+}
+
+.invitacion {
+    background-image: 
+    url('assets/corazon-rojas-removebg-preview.png');
+    background-size: 45%;
+    background-position: center;
+    background-repeat: no-repeat;    
+    background-attachment: fixed;
+    margin-top: 11rem;
+        
+    & h1 {
+        font-size: 7.5vw;
+        margin-top: 7rem;
+        padding: 2rem;
+        text-align: center;        
+        color: var(--white-color);
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    }
+}
+
+.anillos, .fiesta {
+    width: 80px;
+    height: 80px;
+    animation: latido 1s infinite ease-in-out;
+    transform-origin: center; /* Punto de pivote (como una campana) */
+}
+
+/* @keyframes balanceo {
+    0%, 20% {
+        transform: rotate(0deg);
+    }
+    40%, 60% {
+        transform: rotate(15deg);
+    }
+    80%, 100% {
+        transform: rotate(-15deg);
+    }
+} */
+
+@keyframes latido {
+    0%, 30% { transform: scale(1); }
+    40% { transform: scale(1.1); }
+    50% { transform: scale(1); }
+    60% { transform: scale(1.2); }
+    70%, 100% { transform: scale(1); }
+}
+
+.invt-context {
+    width: 37%;
+    text-align: center;
+}
+
+.title-cere {
+    font-size: 3rem;
+    color: var(--white-color);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    border-bottom: 1px solid #000;
+}
+
+.title-2-cere {
+    font-size: 1.5rem;
+    color: var(--white-color);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+
+.cere-info, .fiesta-info {
+    margin-top: 2rem;
+}
+
+.box-info {
+    margin-bottom: 2rem;
+}
+/* .gifts {
+    
+} */
+
+/* .greetings {
+    
+} */
+
+/* .party{
+    
+} */
+
+.footer {
+    padding: 0.5rem;
+    text-align: center;
+    color: var(--white-color);
+    background-color: var(--third-color);
+}
+
+/* Carrusel */
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: .3rem;
+}
+
+
+.tag-list {
+    margin: 0;
+    padding-inline: 0;
+    list-style: none;
+}
+
+
+.tag-list li {
+    width: 150px;
+    height: 250px;
+    padding: .3rem;
+    background: #37284e;
+    border-radius: .5rem;
+    box-shadow: 0 0.5rem 1rem -0.25rem rgb(134, 36, 36);
+}
+
+.scroller {
+    max-width: 80vw;
+}
+
+
+.scroller_inner {
+    display: flex;
+    flex-wrap: wrap;
+    padding-block: 1rem;
+    gap: 1rem;
+}
+
+.scroller[data-animated="true"] {
+    overflow: hidden;
+    mask: linear-gradient(90%deg, transparent, white 20%, white 80%, transparent);
+    -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+}
+
+.scroller[data-animated="true"] .scroller_inner {
+    width: max-content;
+    flex-wrap: nowrap;    
+    animation: scroll var(--_animation-duration, 40s) var(--_animation-direction, forwards) linear infinite;
+}
+
+.scroller[data-direction="right"] {
+    --_animation-direction: reverse;
+}
+
+.scroller[data-direction="left"] {
+    --_animation-direction: forwards;
+}
+
+.scroller[data-duration="slow"] {
+    --_animation-duration: 20s;
+}
+
+.scroller[data-duration="fast"] {
+    --_animation-duration: 100s;
+}
+
+@keyframes scroll {
+    to {
+        transform: translateX(calc(-50% - 0.5rem));
+    }
+    
+}
