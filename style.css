@@ -21,71 +21,63 @@
     --header-height: 4rem;
 }
 /* ********** Reset ********** */
-html {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
-    font-family: var(--font);
-    font-size: 16px;
-    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
 }
-  
-  *,
-  *::after,
-  *::before {
-    box-sizing: inherit;
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    line-height: 1.6;
 }
   
 body {
-    margin: 0;
-    overflow-x: hidden;
+    font-family: var(--font);
     color: var(--text-color);
-}
-  
-a {
-    color: var(--link-color);
-    transition: all 0.5s ease-out;
-}
-  
-a:hover {
-    opacity: 0.75;
-}
-  
-h1 {
+    background-color: var(--white-color);
+    overflow-x: hidden;
     margin: 0;
-    font-size: 2rem;
 }
-  
-h2 {
-    margin: 0;
-    font-size: 1.5rem;
-}
-  
-h3 {
-    margin: 0;
-    font-size: 1.25rem;
-}
-  
-h4 {
-    margin: 0;
-    font-size: 1rem;
-}
-  
-h5 {
-    margin: 0;
-    font-size: 0.85rem;
-}
-  
-h6 {
-    margin: 0;
-    font-size: 0.7rem;
-}
-  
+
 img {
     max-width: 100%;
     height: auto;
+    display: block;
 }
-  
-p {
-    line-height: 1.6;
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+h1, h2, h3, h4 {
+    line-height: 1.2;
+    color: var(--title-color);
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--first-color);
+    color: var(--white-color);
+    border-radius: 0.5rem;
+    font-weight: 500;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
   
 /****** Nieve de Estrellas ******/
@@ -167,7 +159,7 @@ p {
     z-index: 4;
     --parallax-speed: 65;
 
-    & h2 {
+    & h1 {
         font-size: 7.5vw;
         padding: 20px;
         color: var(--white-color);
@@ -261,89 +253,55 @@ p {
 }
 
 .container {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: var(--max-width);    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 80vh;
+    width: 90%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 2rem 0;  
 }
+
 
 .btn {
     display: inline-block;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.5rem;
     background-color: var(--first-color);
     color: var(--white-color);
-    text-decoration: none;
-    border-radius: 7px;
-    transition: all 0.3s ease;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.hero {
-    background-image: 
-    url('assets/sandy-millar-8vaQKYnawHw-unsplash-Photoroom.png');
-    background-size: 70%;
-    background-position: center;
-    background-repeat: no-repeat;    
-    background-attachment: fixed;
-    margin-top: 11rem;
-        
-    & h1 {
-        font-size: 7.5vw;
-        margin-top: 7rem;
-        padding: 2rem;
-        text-align: center;        
-        color: var(--white-color);
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-    }
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .hero-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 0 2rem;
+    gap: 2rem;
 }
-  
+
 .text-content{
     color: var(--white-color);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
 }
 
-.context{
-    border-radius: 150px/100px;
+.text-content p {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.context {
     background-color: var(--white-alpha-color);
-    margin: 0 2rem;
+    border-radius: 1rem;
     padding: 2rem;
-    box-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    backdrop-filter: blur(5px);
 }
-
-@media screen and (min-width: 1024px) {
-    .hero {
-        background-size: 20%;
-    }
-    .hero-content {
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-    }
-
-    .text-content,
-    .novios {
-        flex: 1;
-    }
-
-    .novios {
-        height: auto;
-        border-radius: 12px;
-        width: 27rem;
-        height: auto;
-    }
-      
-}
-
+/* Fondo difuminado */
 .background {
     position: fixed;
     top: 0;
@@ -355,45 +313,48 @@ p {
     background-position: center;
     filter: blur(8px);
     z-index: -1;
+    opacity: 0.7;
 }
 
-.invitacion {
-    background-image: 
-    url('assets/corazon-rojas-removebg-preview.png');
-    background-size: 45%;
-    background-position: center;
-    background-repeat: no-repeat;    
-    background-attachment: fixed;
-    margin-top: 11rem;
-        
-    & h1 {
-        font-size: 7.5vw;
-        margin-top: 7rem;
-        padding: 2rem;
-        text-align: center;        
-        color: var(--white-color);
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-    }
+/* ********** Secciones ********** */
+section {
+    position: relative;
+    padding: 4rem 0;
+}
+
+section h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--white-color);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+    
+/* Sección Invitación */
+.invitacion-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.invt-context {
+    width: 100%;
+    padding: 2rem;
+}
+
+.invitacion-context {
+    width: 100%;
+    padding: 2rem;
 }
 
 .anillos, .fiesta {
     width: 80px;
     height: 80px;
+    margin: 0 auto 1rem;
     animation: latido 1s infinite ease-in-out;
     transform-origin: center; /* Punto de pivote (como una campana) */
 }
-
-/* @keyframes balanceo {
-    0%, 20% {
-        transform: rotate(0deg);
-    }
-    40%, 60% {
-        transform: rotate(15deg);
-    }
-    80%, 100% {
-        transform: rotate(-15deg);
-    }
-} */
 
 @keyframes latido {
     0%, 30% { transform: scale(1); }
@@ -403,58 +364,69 @@ p {
     70%, 100% { transform: scale(1); }
 }
 
-.invt-context {
-    width: 37%;
-    text-align: center;
+@media (min-width: 1024px) {
+    .hero-content, .invitacion-content {
+        flex-direction: row;
+    }
+
+    .text-content,
+    .novios {
+        flex: 1;
+    }
+
+    .novios {
+        max-width: 400px;
+    }
 }
 
 .title-cere {
-    font-size: 3rem;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
     color: var(--white-color);
     text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-    border-bottom: 1px solid #000;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.title-cere::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--white-color), transparent);
 }
 
 .title-2-cere {
     font-size: 1.5rem;
-    color: var(--white-color);
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    margin-bottom: 0.5rem;
+    color: var(--third-color);
 }
 
 .cere-info, .fiesta-info {
-    margin-top: 2rem;
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 .box-info {
-    margin-bottom: 2rem;
-}
-/* .gifts {
-    
-} */
-
-/* .greetings {
-    
-} */
-
-/* .party{
-    
-} */
-
-.footer {
-    padding: 0.5rem;
-    text-align: center;
-    color: var(--white-color);
-    background-color: var(--third-color);
+    background-color: var(--white-alpha-color);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    backdrop-filter: blur(5px);
 }
 
-/* Carrusel */
+/* Galería */
+.galeria {
+    padding: 4rem 0;
+}
 
-img {
+/* .scroller-container {
     max-width: 100%;
-    height: auto;
-    border-radius: .3rem;
-}
-
+    overflow: hidden;
+} */
 
 .tag-list {
     margin: 0;
@@ -462,14 +434,25 @@ img {
     list-style: none;
 }
 
-
 .tag-list li {
     width: 150px;
     height: 250px;
-    padding: .3rem;
-    background: #37284e;
+    padding: .5rem;
+    background: var(--second-alpha-color);
     border-radius: .5rem;
-    box-shadow: 0 0.5rem 1rem -0.25rem rgb(134, 36, 36);
+    box-shadow: 0 0.5rem 1rem -0.25rem var(--first-alpha-color);
+}
+
+.tag-list img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.3rem;
+    transition: transform 0.3s ease;
+}
+
+.tag-list li:hover img {
+    transform: scale(1.05);
 }
 
 .scroller {
@@ -480,8 +463,8 @@ img {
 .scroller_inner {
     display: flex;
     flex-wrap: wrap;
-    padding-block: 1rem;
     gap: 1rem;
+    padding-block: 1rem;
 }
 
 .scroller[data-animated="true"] {
@@ -517,4 +500,24 @@ img {
         transform: translateX(calc(-50% - 0.5rem));
     }
     
+}
+
+/* Mensajes */
+.mensajes {
+    text-align: center;
+}
+
+.mensajes p {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Footer */
+.footer {
+    padding: 0.5rem;
+    text-align: center;
+    color: var(--white-color);
+    background-color: var(--third-color);
 }
